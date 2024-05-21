@@ -3,8 +3,8 @@
 
 ## Application Workflow
 
-<p align="justify"> I have built a sales management system in Flask, a Python-based framework for web-based application development. I have used Flask for the backend and HTML, CSS, and JavaScript for frontend development. SQLite database is used for inventory data storage.</p>
-<p align="justify"> At first, I copied the provided data into an Excel file. I wrote a script "connect.py" that reads data from the Excel file and stores that data in the database.</p>
+<p align="justify"> A simple sales management system app in Flask (a Python-based framework for web-based application development). Flask has been used for the backend, and HTML, CSS, and JavaScript have been used for frontend development. SQLite database is used for inventory data storage.</p>
+<p align="justify"> I wrote a script "connect.py" that reads data from the Excel file and stores that data in the database.</p>
 
 ### Database Tables
 
@@ -36,7 +36,7 @@
 <p align="justify">
 It will show something like below image. You need to copy that address http://127.0.0.1:5000/ in your browser. It will run your application in browser.</p>
 
-![image](https://github.com/Hira-ar/Flask-Inventory-App/assets/94753183/d233f9bb-7d73-41ee-b0c7-3a9323e77e16)
+![image](https://github.com/Hira-ar/Flask-Inventory-App/assets/94753183/ef93c1aa-1d71-462f-b9d6-6ee1e384d2ad)
 
 6.  "templates" folder have all html files that will run automatically
     on the go.
@@ -45,8 +45,7 @@ It will show something like below image. You need to copy that address http://12
 >
 > Once your app will open in browser it will look like this.
 
-![image](https://github.com/Hira-ar/Flask-Inventory-App/assets/94753183/aa6c5e08-1ac1-4062-9597-6ea9da20f97f)
-
+![image](https://github.com/Hira-ar/Flask-Inventory-App/assets/94753183/6a695bb8-cbe5-4945-8814-8cab71648bfc)
 
   - **Restock:** By clicking "restock", your database will be reset to its original base values. But you need to click again to **Product** to get back to your products page after restock. 
 - **Product:** It is your home page where you can made purchase, items will be added to cart.
@@ -69,17 +68,17 @@ It will show something like below image. You need to copy that address http://12
     -  If item quantity is not in stock customer will not be able to add
         that quantity in cart.
 
-       ![image](https://github.com/Hira-ar/Flask-Inventory-App/assets/94753183/7ad41664-6d17-41f9-981f-68a024475835)
+       ![image](https://github.com/Hira-ar/Flask-Inventory-App/assets/94753183/ac2b4665-18ac-4bb2-bb38-84ad855b3cc9)
 
-        If the customer has lower balance he will not be able to
-        checkout
+    - If the customer has lower balance he will not be able to checkout
 
-        ![image](https://github.com/Hira-ar/Flask-Inventory-App/assets/94753183/6a9c42f0-288d-4468-88ee-472196e4f053)
+        ![image](https://github.com/Hira-ar/Flask-Inventory-App/assets/94753183/267ba140-502e-4f52-8a34-5568b2919260)
+
 
 
 6.  Inform the customer if an item is out of stock
 
-   ![image](https://github.com/Hira-ar/Flask-Inventory-App/assets/94753183/9447d216-18b7-40fa-a9fd-b223e124a47b)
+   ![image](https://github.com/Hira-ar/Flask-Inventory-App/assets/94753183/64270108-2b27-452f-bcf8-ef50b88c1aba)
 
     All items in database will be updated.
 
