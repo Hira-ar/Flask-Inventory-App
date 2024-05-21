@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% if title%}
+		<title>Inventory {{title}}</title>
+	{% else %}
+		<title>Inventory</title>
+	{% endif %}
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+
+
+</head>
+
+<body>
+		          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+			  <a class="navbar-brand" href="#"><b>Sales Management System</b></a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			    <div class="navbar-nav">
+			      
+			      <a class="nav-item nav-link active" href="/">Product <span class="sr-only">(current)</span></a>
+			       <a class="nav-item nav-link" href="/restock">Restock</a>
+                              
+			       
+			    </div>
+			  </div>
+			</nav>
+  </br>
+
+<div class="container">
+  <h2>Product Information</h2>
+
+ <div class="float-md-right">
+<label for="html">Customer Balance</label>
+        
+      {% for b in balance %}
+            <input  type = "text" name="c_balance" value={{b['c_balance']}} disabled>
+         {% endfor %}
+    
+</div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+  <div class="modal-content">
+
+ </div>
+
+  </div> 
+ </div> 
+
+ </br>
+</br>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="text-info">Product Id</th>
+        <th class="text-info">Product Name</th>
+        <th class="text-info">Product Cost</th>
+        <th class="text-info">Stock Qty</th>
+        <th class="text-info">Purchase Qty</th>
+      </tr>
+    </thead>
+    <tbody>
+       {% for row in rows %}
+            <tr>
+               
+               <td>{{row["itemId"]}}</td>
+               <td>{{row["itemName"]}}</td>
+               <td>{{row["cost"]}}</td>
+               <td>{{row['QTY']}}</td>	
+                 
+               
+               <td> 
+                    <form action = "{{ url_for('cart') }}" method = "POST">
+                    <input  type = "hidden" name="quantity" class="qty" value={{row['QTY']}}>
+                    <input type="number" min="1" class = "user_value" name="ct"size=5 placeholder="Enter QTY" required>
+                    <button type="submit" class="btn btn-sm btn-warning">Add to Cart</button>
+                    <input  type = "hidden" name="pid" placeholder={{row['itemID']}} value={{row['itemID']}}>
+                    
+                    {% if row['QTY'] <=0 %}
+			<button name = "cout" >Out of Stock</button>
+{% endif%}
+               
+                    
+                    </form>
+          
+              </td>
+            </tr>
+         {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+
+
+                   
+
+
+<div class="container">
+ 
+<div class="float-md-right">
+<form action = "{{ url_for('addcart') }}" method = "POST">
+<label for="html">Cart</label>
+<input  id='cart_total' type = "text" name="checkout">
+<button name = "cout" type="submit">Proceed</button>
+
+
+<script>
+var url_string = window.location.href; //window.location.href
+var url = new URL(url_string);
+var c = url.searchParams.get("msg");
+if (c)
+	{document.getElementById('cart_total').value = c;}
+
+button0 = document.getElementsByClassName("btn btn-sm btn-warning")[0]
+button0.addEventListener("click", function() {
+if (document.getElementsByClassName("user_value")[0].value > document.getElementsByClassName("qty")[0].value)
+{alert("Your QTY is not in stock. Please lower your quantity");}
+});
+
+button1 = document.getElementsByClassName("btn btn-sm btn-warning")[1]
+button1.addEventListener("click", function() {
+    if (document.getElementsByClassName("user_value")[1].value > document.getElementsByClassName("qty")[1].value)
+{alert("Your QTY is not in stock. Please lower your quantity");}
+});
+
+button2 = document.getElementsByClassName("btn btn-sm btn-warning")[2]
+button2.addEventListener("click", function() {
+    if (document.getElementsByClassName("user_value")[2].value > document.getElementsByClassName("qty")[2].value)
+{alert("Your QTY is not in stock. Please lower your quantity");}
+});
+
+button3 = document.getElementsByClassName("btn btn-sm btn-warning")[3]
+button3.addEventListener("click", function() {
+    if (document.getElementsByClassName("qty")[3].value < document.getElementsByClassName("user_value")[3].value)
+{alert("Your QTY is not in stock. Please lower your quantity");}
+});
+
+button4 = document.getElementsByClassName("btn btn-sm btn-warning")[4]
+button4.addEventListener("click", function() {
+    if (document.getElementsByClassName("user_value")[4].value > document.getElementsByClassName("qty")[4].value)
+{alert("Your QTY is not in stock. Please lower your quantity");}
+});
+
+button5 = document.getElementsByClassName("btn btn-sm btn-warning")[5]
+button5.addEventListener("click", function() {
+    if (document.getElementsByClassName("user_value")[5].value > document.getElementsByClassName("qty")[5].value)
+{alert("Your QTY is not in stock. Please lower your quantity");}
+});
+
+button6 = document.getElementsByClassName("btn btn-sm btn-warning")[6]
+button6.addEventListener("click", function() {
+    if (document.getElementsByClassName("user_value")[6].value > document.getElementsByClassName("qty")[6].value)
+{alert("Your QTY is not in stock. Please lower your quantity");}
+});
+
+</script>
+    
+</div>
+</div>
+
+</body>
+</html>
+

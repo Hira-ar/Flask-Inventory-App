@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% if title%}
+		<title>Inventory {{title}}</title>
+	{% else %}
+		<title>Inventory</title>
+	{% endif %}
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+<style>
+.alert {
+  position: absolute;
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+</style>
+
+</head>
+
+<body>
+		          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+			  <a class="navbar-brand" href="#"><b>Sales Management System</b></a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			    <div class="navbar-nav">
+			      
+			      <a class="nav-item nav-link active" href="/">Product <span class="sr-only">(current)</span></a>
+			      <a class="nav-item nav-link" href="/restock">Restock</a>
+                              
+			       
+			    </div>
+			  </div>
+			</nav>
+  </br>
+
+<div class="container">
+  <h2>Product Information</h2>
+
+ <div class="float-md-right">
+<label for="html">Customer Balance</label>
+        
+      {% for b in balance %}
+            <input  type = "text" name="c_balance" value={{b['c_balance']}} disabled>
+         {% endfor %}
+    
+</div>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+  <div class="modal-content">
+
+ </div>
+
+  </div> 
+ </div> 
+
+ </br>
+</br>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="text-info">Product Id</th>
+        <th class="text-info">Product Name</th>
+        <th class="text-info">Product Cost</th>
+        <th class="text-info">Purchase Qty</th>
+        <th class="text-info">Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+       {% for row in rows %}
+            <tr>
+               
+               <td>{{row["itemId"]}}</td>
+               <td>{{row["itemName"]}}</td>
+               <td>{{row["cost"]}}</td>
+               <td>{{row["cart"]}}</td>
+               <td>{{row["total_cost"]}}</td>
+               
+                 
+               
+               <td> 
+                    
+                    <form action = "{{ url_for('delete') }}" method = "POST">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                
+                    <input  type = "hidden" name="del_id" placeholder={{row['itemID']}} value={{row['itemID']}}>
+                    
+                    <input  type = "hidden" name="cart_id" placeholder={{row['cart']}} value={{row['cart']}}>
+                    
+               
+                    
+                    </form>
+          
+              </td>
+            </tr>
+         {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+
+
+                   
+
+
+<div class="container">
+ 
+<div class="float-md-right">
+<form action = "{{ url_for('checkout') }}" method = "POST">
+
+
+<div>
+{% for b in balance%} 
+            <label for="html">Remaining Balance: </label>
+            <input  id = "rb" type = "text" name="g_total" value={{b['remaining_balance']}} disabled >
+            
+            <label for="html">Grand Total: </label>
+
+            <input  type = "text" name="g_total" value={{b['purchase_amount']}} disabled >
+            
+       
+{% if grand_total > cust_balance %}
+<button name = "cout" type="submit" disabled >Checkout</button>
+<div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  <strong>Lower Balance! </strong>Your balance is lower.
+</div>
+
+
+{% elif b['purchase_amount'] == "£0" %}
+<button name = "cou" type="submit" disabled>Checkout</button>
+<div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  <strong>Your Cart is Empty.
+</div>
+{% else%}
+<button name = "cout" type="submit">Checkout</button>
+  {% endif%}
+{% endfor %}
+
+ 
+
+
+
+    
+</div>
+</div>
+
+</body>
+</html>
+
